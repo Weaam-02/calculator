@@ -41,9 +41,18 @@
     equation += value;
   }
 
-  // TODO: fix remove space
-  function backSpace() {
+  function backspace() {
     equation = equation.substring(0, equation.length - 1);
+    switch (equation.substring(equation.length - 3, equation.length)) {
+      case " + ":
+      case " * ":
+      case " - ":
+      case " / ":
+        equation = equation.substring(0, equation.length - 3);
+        break;
+      default:
+        equation = equation.substring(0, equation.length - 1);
+    }
   }
 
   function clear() {
@@ -62,10 +71,10 @@
 </svelte:head>
 
 <div
-  class="bg-white rounded-2xl grid grid-cols-4 gap-2 p-7 text-2xl font-semibold shadow-2xl"
+  class="bg-white max-w-[18.50rem] rounded-2xl grid grid-cols-4 gap-2 p-7 text-2xl font-semibold shadow-2xl"
 >
   <div
-    class="bg-blue-400 h-14 rounded-full flex items-center px-6 my-4 text-white col-span-4 shadow-lg shadow-blue-400/50"
+    class="bg-blue-400 min-h-14 rounded-2xl flex items-center px-6 my-2 mb-4 text-white col-span-4 shadow-lg shadow-blue-400/50 break-all"
   >
     {equation}
   </div>
@@ -76,7 +85,10 @@
     AC
   </button>
 
-  <button on:click={backSpace} class="bg-slate-100 hover:bg-slate-200/50">
+  <button
+    on:click={() => backspace()}
+    class="bg-slate-100 hover:bg-slate-200/50"
+  >
     <BackSpace />
   </button>
 

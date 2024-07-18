@@ -10,6 +10,6 @@ body {
 }
 
 button {
-  @apply bg-slate-200 min-w-14 h-14 rounded-full text-slate-500 hover:bg-slate-200/90 hover:scale-95 transition-all
+  @apply bg-slate-200 min-w-14 h-14 rounded-full text-slate-500 hover:bg-slate-200/90 hover:scale-95 active:bg-slate-300 active:text-white transition-all
   shadow-xl flex items-center justify-center;
 }
