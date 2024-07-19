@@ -42,7 +42,6 @@
   }
 
   function backspace() {
-    equation = equation.substring(0, equation.length - 1);
     switch (equation.substring(equation.length - 3, equation.length)) {
       case " + ":
       case " * ":
