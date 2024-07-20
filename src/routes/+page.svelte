@@ -59,11 +59,38 @@
   }
 
   function solve() {
-    equation = eval(equation);
+    try {
+      let answer = eval(equation);
+      if (answer == undefined) throw SyntaxError;
+      equation = answer;
+    } catch (error) {
+      let output = document.getElementById("output");
+
+      output?.classList.add("bg-red-600/90");
+
+      setTimeout(() => {
+        output?.classList.remove("bg-red-600/90");
+      }, 500);
+    }
   }
 
   let equation: string = "";
+
+  function onKeyDown(e: KeyboardEvent) {
+    let button = document.getElementById(e.key);
+
+    button?.click();
+
+    button?.focus();
+
+    setTimeout(() => {
+      //@ts-ignore
+      document.activeElement?.blur();
+    }, 100);
+  }
 </script>
+
+<svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <svelte:head>
   <title>My Cute Calc</title>
@@ -73,75 +100,87 @@
   class="bg-white max-w-[18.50rem] rounded-2xl grid grid-cols-4 gap-2 p-7 text-2xl font-semibold shadow-2xl"
 >
   <div
-    class="bg-blue-400 min-h-14 rounded-2xl flex items-center px-6 my-2 mb-4 text-white col-span-4 shadow-lg shadow-blue-400/50 break-all"
+    id="output"
+    class="bg-blue-400 min-h-14 rounded-2xl flex items-center px-6 my-2 mb-4 text-white col-span-4 shadow-lg shadow-blue-400/50 break-all transition-all"
   >
     {equation}
   </div>
 
   <!-- "bg-slate-800 text-white hover:bg-slate-900 shadow-slate-800/80 -->
 
-  <button on:click={clear} class="bg-slate-100 hover:bg-slate-200/50">
+  <button
+    on:click={clear}
+    id="Delete"
+    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-300 transition-all"
+  >
     AC
   </button>
 
   <button
+    id="Backspace"
     on:click={() => backspace()}
-    class="bg-slate-100 hover:bg-slate-200/50"
+    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-300 transition-all"
   >
     <BackSpace />
   </button>
 
   <button
+    id="%"
     on:click={() => addToEquation(" /100 ")}
-    class="bg-slate-100 hover:bg-slate-200/50 font-extrabold"
+    class="bg-slate-100 hover:bg-slate-200/50 font-extrabold active:bg-slate-300 transition-all"
   >
     %
   </button>
 
   <button
+    id="+"
     on:click={() => addToEquation(" + ")}
     class="bg-green-400 text-white hover:bg-green-500/80 shadow-green-400/80"
   >
     <Plus />
   </button>
 
-  <button on:click={() => addToEquation("7")}> 7 </button>
-  <button on:click={() => addToEquation("8")}> 8 </button>
-  <button on:click={() => addToEquation("9")}> 9 </button>
+  <button id="7" on:click={() => addToEquation("7")}> 7 </button>
+  <button id="8" on:click={() => addToEquation("8")}> 8 </button>
+  <button id="9" on:click={() => addToEquation("9")}> 9 </button>
   <button
+    id="-"
     on:click={() => addToEquation(" - ")}
     class="bg-red-500 text-white hover:bg-red-600/90 shadow-red-500/60"
   >
     <Minus />
   </button>
 
-  <button on:click={() => addToEquation("4")}> 4 </button>
-  <button on:click={() => addToEquation("5")}> 5 </button>
-  <button on:click={() => addToEquation("6")}> 6 </button>
+  <button id="4" on:click={() => addToEquation("4")}> 4 </button>
+  <button id="5" on:click={() => addToEquation("5")}> 5 </button>
+  <button id="6" on:click={() => addToEquation("6")}> 6 </button>
   <button
+    id="/"
     on:click={() => addToEquation(" / ")}
     class="bg-blue-500 text-white hover:bg-blue-600/90 shadow-blue-500/80"
   >
     <Divisionicon />
   </button>
 
-  <button on:click={() => addToEquation("1")}> 1 </button>
-  <button on:click={() => addToEquation("2")}> 2 </button>
-  <button on:click={() => addToEquation("3")}> 3 </button>
+  <button id="1" on:click={() => addToEquation("1")}> 1 </button>
+  <button id="2" on:click={() => addToEquation("2")}> 2 </button>
+  <button id="3" on:click={() => addToEquation("3")}> 3 </button>
   <button
+    id="*"
     on:click={() => addToEquation(" * ")}
     class="bg-yellow-400 text-white hover:bg-yellow-400/90 shadow-yellow-400/80"
   >
     <Multi />
   </button>
 
-  <button on:click={() => addToEquation(" . ")} class="font-extrabold">
+  <button id="." on:click={() => addToEquation(" . ")} class="font-extrabold">
     .
   </button>
-  <button on:click={() => addToEquation("0")}> 0 </button>
+  <button id="0" on:click={() => addToEquation("0")}> 0 </button>
   <button
+    id="="
     on:click={() => solve()}
-    class="bg-slate-100 hover:bg-slate-200/50 col-span-2"
+    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-300 transition-all col-span-2"
   >
     <Equals />
   </button>
