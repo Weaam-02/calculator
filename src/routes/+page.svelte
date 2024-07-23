@@ -111,11 +111,26 @@
 <div class="ear-r"></div> -->
 
 <!-- <div class="relative h-fit w-fit"> -->
-<div
+
+<!-- // -->
+
+<!-- <div
   class="ear a absolute left-[35.99rem] top-[3.95rem] h-16 w-16 -z-10 shadow-xl"
 ></div>
 <div
   class="ear b absolute top-[3.95rem] right-[35.99rem] h-16 w-16 -z-10 shadow-xl"
+></div> -->
+
+<!-- <div class="grid grid-rows-3 gap-4 -z-10">
+  <div class="ear a h-16 w-16 -z-10 shadow-xl row-start-2 col-end-3"></div>
+  <div class="ear b h-16 w-16 -z-10 shadow-xl row-start-2 col-end-5"></div>
+</div> -->
+
+<div
+  class="ear a absolute left-[42%] top-[10.5%] xl:left-[42%] md:left-[40%] sm:left-[34%] h-16 w-16 -z-10 shadow-xl"
+></div>
+<div
+  class="ear b absolute top-[10.5%] right-[42%] xl:right-[42%] md:right-[40%] sm:right-[34%] h-16 w-16 -z-10 shadow-xl"
 ></div>
 
 <div
