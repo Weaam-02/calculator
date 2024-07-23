@@ -10,6 +10,60 @@ body {
 }
 
 button {
-  @apply bg-slate-200 min-w-14 h-14 rounded-full text-slate-500 hover:bg-slate-200/90 hover:scale-95 active:bg-slate-300 active:text-white transition-all
+  @apply bg-slate-100 min-w-14 h-14 rounded-full text-red-300 hover:bg-slate-200/40 hover:scale-95 active:bg-slate-200 active:text-white transition-all
   shadow-xl flex items-center justify-center focus:scale-90 focus:outline-none focus:border-0;
+}
+
+/* //////////////////// EAR One //////////////////// */
+
+/* .ear-l {
+  height: 0;
+  width: 0;
+  border-bottom: 3.12em solid white;
+  border-left: 1.56em solid transparent;
+  border-right: 1.56em solid transparent;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 7.37em;
+  left: 3.12em;
+}
+
+.ear-l:before,
+.ear-r:before {
+  position: absolute;
+  content: "";
+  height: 0;
+  width: 0;
+  border-bottom: 1.37em solid pink;
+  border-left: 0.75em solid transparent;
+  border-right: 0.75em solid transparent;
+  left: -0.68em;
+  top: 1.56em;
+}
+
+.ear-r {
+  height: 0;
+  width: 0;
+  border-bottom: 3.12em solid white;
+  border-right: 1.56em solid transparent;
+  border-left: 1.56em solid transparent;
+  position: absolute;
+  bottom: 7.37em;
+  left: 8.75em;
+} */
+
+.ear {
+  /* top: 10px;
+  left: 25px; */
+  width: 50px;
+  height: 50px;
+  background: #ffb7bc;
+  border-radius: 5px;
+  box-shadow: 0 0 0 20px white;
+  transform: skew(4deg) rotate(48deg);
+}
+
+.ear.b {
+  transform: skew(-4deg) rotate(-48deg);
+  /* left: 125px; */
 }

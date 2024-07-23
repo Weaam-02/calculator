@@ -36,6 +36,7 @@
   import Multi from "$lib/icons/multi.svelte";
   import Minus from "$lib/icons/minus.svelte";
   import Equals from "$lib/icons/equals.svelte";
+  import { onMount } from "svelte";
 
   function addToEquation(value: string) {
     equation += value;
@@ -66,10 +67,10 @@
     } catch (error) {
       let output = document.getElementById("output");
 
-      output?.classList.add("bg-red-600/90");
+      output?.classList.add("bg-red-500");
 
       setTimeout(() => {
-        output?.classList.remove("bg-red-600/90");
+        output?.classList.remove("bg-red-500");
       }, 500);
     }
   }
@@ -88,6 +89,16 @@
       document.activeElement?.blur();
     }, 100);
   }
+
+  onMount(() => {
+    let allBtn = document.getElementsByTagName("button");
+
+    for (let i = 0; i < allBtn.length; i++) {
+      allBtn[i].addEventListener("click", () => {
+        new Audio("/meow-3.mp3").play();
+      });
+    }
+  });
 </script>
 
 <svelte:window on:keydown|preventDefault={onKeyDown} />
@@ -96,12 +107,28 @@
   <title>My Cute Calc</title>
 </svelte:head>
 
+<!-- <div class="ear-l"></div>
+<div class="ear-r"></div> -->
+
+<!-- <div class="relative h-fit w-fit"> -->
 <div
-  class="bg-white max-w-[18.50rem] rounded-2xl grid grid-cols-4 gap-2 p-7 text-2xl font-semibold shadow-2xl"
+  class="ear a absolute left-[35.99rem] top-[3.95rem] h-16 w-16 -z-10 shadow-xl"
+></div>
+<div
+  class="ear b absolute top-[3.95rem] right-[35.99rem] h-16 w-16 -z-10 shadow-xl"
+></div>
+
+<div
+  class="bg-white max-w-[18.50rem] rounded-3xl grid grid-cols-4 gap-2 p-7 text-2xl font-semibold shadow-xl"
 >
+  <div class="bg-black w-4 h-4 rounded-full ml-16"></div>
+  <!-- <div class="bg-black w-4 h-2 rounded-md col-span-2 ml-12 mt-2"></div> -->
+  <!-- <div class="bg-black w-3 borde-b rounded-b-3xl col-span-2 ml-12 mt-2"></div> -->
+  <div class="text-black font-extrabold col-span-2 mt-12 rotate-90">3</div>
+  <div class="bg-black w-4 h-4 rounded-full -ml-8"></div>
   <div
     id="output"
-    class="bg-blue-400 min-h-14 rounded-2xl flex items-center px-6 my-2 mb-4 text-white col-span-4 shadow-lg shadow-blue-400/50 break-all transition-all"
+    class="bg-[#ffb7bc] min-h-14 rounded-2xl flex items-center px-6 -mt-[3.4rem] mb-4 text-white col-span-4 shadow-lg break-all transition-all"
   >
     {equation}
   </div>
@@ -111,7 +138,7 @@
   <button
     on:click={clear}
     id="Delete"
-    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-300 transition-all"
+    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-200 transition-all"
   >
     AC
   </button>
@@ -119,7 +146,7 @@
   <button
     id="Backspace"
     on:click={() => backspace()}
-    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-300 transition-all"
+    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-200 transition-all"
   >
     <BackSpace />
   </button>
@@ -127,7 +154,7 @@
   <button
     id="%"
     on:click={() => addToEquation(" /100 ")}
-    class="bg-slate-100 hover:bg-slate-200/50 font-extrabold active:bg-slate-300 transition-all"
+    class="bg-slate-100 hover:bg-slate-200/50 font-extrabold active:bg-slate-200 transition-all"
   >
     %
   </button>
@@ -135,7 +162,7 @@
   <button
     id="+"
     on:click={() => addToEquation(" + ")}
-    class="bg-green-400 text-white hover:bg-green-500/80 shadow-green-400/80"
+    class="bg-red-200 text-white hover:bg-red-300/90 shadow-red-400/60"
   >
     <Plus />
   </button>
@@ -146,7 +173,7 @@
   <button
     id="-"
     on:click={() => addToEquation(" - ")}
-    class="bg-red-500 text-white hover:bg-red-600/90 shadow-red-500/60"
+    class="bg-red-300 text-white hover:bg-red-400/90 shadow-red-500/60"
   >
     <Minus />
   </button>
@@ -157,7 +184,7 @@
   <button
     id="/"
     on:click={() => addToEquation(" / ")}
-    class="bg-blue-500 text-white hover:bg-blue-600/90 shadow-blue-500/80"
+    class="bg-red-400 text-white hover:bg-red-500/90 shadow-red-500/60"
   >
     <Divisionicon />
   </button>
@@ -168,7 +195,7 @@
   <button
     id="*"
     on:click={() => addToEquation(" * ")}
-    class="bg-yellow-400 text-white hover:bg-yellow-400/90 shadow-yellow-400/80"
+    class="bg-red-500 text-white hover:bg-red-600/90 shadow-red-500/60"
   >
     <Multi />
   </button>
@@ -180,7 +207,7 @@
   <button
     id="="
     on:click={() => solve()}
-    class="bg-slate-100 hover:bg-slate-200/50 active:bg-slate-300 transition-all col-span-2"
+    class="bg-slate-100 hover:bg-slate-200 active:bg-slate-300 transition-all col-span-2"
   >
     <Equals />
   </button>
